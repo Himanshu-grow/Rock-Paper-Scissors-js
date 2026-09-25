@@ -1,6 +1,7 @@
 # Rock Paper Scissors 🎮
 
 A browser-based Rock-Paper-Scissors game developed using HTML, CSS, and vanilla JavaScript.
+play the game her -> https://himanshu-grow.github.io/Rock-Paper-Scissors-js/
 
 ## Features
 
