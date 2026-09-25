@@ -1,2 +1,21 @@
-# Rock-Paper-Scissors-js
-An interactive Rock-Paper-Scissors game built with HTML, CSS, and JavaScript, featuring a responsive UI, randomized computer moves, score tracking, and persistent scores using localStorage.
+# Rock Paper Scissors 🎮
+
+A browser-based Rock-Paper-Scissors game developed using HTML, CSS, and vanilla JavaScript.
+
+## Features
+
+* Interactive Rock, Paper, and Scissors buttons.
+* Randomized computer moves.
+* Automatic win, loss, and draw detection.
+* Real-time score tracking.
+* Persistent scores using browser localStorage.
+* Reset score functionality with an in-page confirmation.
+* Dark-themed, centered game interface.
+
+## Technologies Used
+
+HTML5, CSS3, JavaScript
+
+## How to Play
+
+Open `index.html` in your browser, choose Rock, Paper, or Scissors, and compete against the computer!
