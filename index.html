@@ -63,6 +63,9 @@
       .js-move {
         font-size: 18px;
       }
+      .js-player-move {
+        font-size: 18px;
+      }
 
       .js-score {
         font-size: 18px;
@@ -77,6 +80,18 @@
         border-radius: 5px;
         cursor: pointer;
         font-size: 16px;
+      }
+      .js-auto-button {
+        background-color: white;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .js-auto-button:hover {
+        background-color: #cccccc;
       }
 
       .reset-button:hover {
@@ -123,28 +138,35 @@
 
     <p class="js-result"></p>
 
+    <p class="js-player-move"></p>
+
     <p class="js-move"></p>
 
     <p class="js-score"></p>
+    <div class="auto-and-reset">
+      <button
+        class="reset-button"
+        onclick="
+          counts.wins = 0;
+          counts.losses = 0;
+          counts.draws = 0;
+          counts.games = 0;
 
-    <button
-      class="reset-button"
-      onclick="
-        counts.wins = 0;
-        counts.losses = 0;
-        counts.draws = 0;
-        counts.games = 0;
+          localStorage.setItem('score', JSON.stringify(counts));
+          document.querySelector('.js-reset-message').innerHTML =
+          'Score reset!';
 
-        localStorage.setItem('score', JSON.stringify(counts));
-        document.querySelector('.js-reset-message').innerHTML =
-        'Score reset!';
+          updateScoreElement();
+        "
+      >
+        Reset Score
+      </button>
+      <button class="js-auto-button" onclick="
+        AutoPlay();
+      ">Auto Play</button>
+    </div>
+      <p class="js-reset-message"></p>
 
-        updateScoreElement();
-      "
-    >
-      Reset Score
-    </button>
-    <p class="js-reset-message"></p>
 
 
     <script>
@@ -190,13 +212,16 @@
 
 
       function play(player) {
-            document.querySelector('.js-reset-message').innerHTML = '';
+        document.querySelector('.js-reset-message').innerHTML = '';
 
         var computer = pickComputerMove();
 
         var result = getResult(player, computer);
 
         counts.games++;
+
+        document.querySelector('.js-player-move').innerHTML =
+        `You played '${player}'`;
 
         message(result, computer);
       }
@@ -256,6 +281,22 @@
            Losses: ${counts.losses} &nbsp;&nbsp;
            Draws: ${counts.draws} &nbsp;&nbsp;
            Games: ${counts.games}`;
+      }
+      let isAutoPlay = false;
+      let intervalId;
+      function AutoPlay(){
+      if(!isAutoPlay){
+        intervalId = setInterval(function(){
+          const playerMove = pickComputerMove();
+          play(playerMove);
+          }
+        ,1000);
+        isAutoPlay = true;
+      }
+      else {
+        clearInterval(intervalId);
+        isAutoPlay = false;
+      }
       }
 
     </script>
